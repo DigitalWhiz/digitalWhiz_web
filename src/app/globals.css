@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Estilos para los formularios */
+.gradient-bg-gral {
+    background: linear-gradient(
+        to bottom,
+        #070a60 0%,
+        #070a60 25%,
+        #f64994 35%,
+        #fc78f4 55%,
+        #c327e9 75%,
+        #d038b3 100%
+    );
+}
+
+/* Estilos para los formularios */
+.gradient-bg-form {
+    background: linear-gradient(
+        to bottom,
+        #f64994 35%,
+        #fc78f4 55%,
+        #c327e9 75%,
+        #d038b3 100%
+    );
+}
+
+
