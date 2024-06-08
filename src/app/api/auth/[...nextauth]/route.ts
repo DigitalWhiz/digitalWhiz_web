@@ -19,14 +19,14 @@ const handler = NextAuth({
           email: credentials?.email,
         }).select("+password");
 
-        if (!userFound) throw new Error("Credentials Invalid");
+        if (!userFound) throw new Error("Credenciales Invalidas");
 
         const passwordMatch = await bcrypt.compare(
           credentials!.password,
           userFound.password
         );
 
-        if (!passwordMatch) throw new Error("Credentials Invalid");
+        if (!passwordMatch) throw new Error("Credenciales invalidas");
 
         console.log(userFound);
 

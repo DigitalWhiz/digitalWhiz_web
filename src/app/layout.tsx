@@ -3,6 +3,7 @@ import { titleFont } from "@/config/fonts";
 import "./globals.css";
 import  Providers  from "./Providers";
 import Navbar from "@/components/nav/Navbar";
+import Footer from "@/components/footer/footer";
 
 const Colors = {
   BLUE: '#070A60',
@@ -14,7 +15,7 @@ const Colors = {
 
 export const metadata: Metadata = {
   title: "Digital Whiz",
-  description: "Digital marketing agency",
+  description: "Agencia Marketing Digital",
 };
 
 export default function RootLayout({
@@ -23,13 +24,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <Providers>
+    <html lang="es">
+      
       <body className={titleFont.className} style={{backgroundColor: Colors.BLUE}}>
+      <Providers>
         <Navbar />
-        {children}
+        <main>{children}</main>
+        <Footer />
+        </Providers>
       </body>
-      </Providers>
     </html>
   );
 }

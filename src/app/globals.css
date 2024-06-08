@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Estilos para los formularios */
+/* ESTILOS PARA LOS FORMULARIOS */
 .gradient-bg-gral {
     background: linear-gradient(
         to bottom,
@@ -15,7 +15,7 @@
     );
 }
 
-/* Estilos para los formularios */
+/* ESTILOS PARA LOS FORMULARIOS */
 .gradient-bg-form {
     background: linear-gradient(
         to bottom,
@@ -26,4 +26,33 @@
     );
 }
 
-
+/* ESTILOS PARA LA SECTION 2 DE LA PÁGINA DE INICIO */
+/* Estilos para las tarjetas */
+.card {
+    opacity: 0;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transition: opacity 1s, transform 1s;
+  }
+  
+  /* Estilos para las tarjetas visibles */
+  .card.visible {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+    animation: fadeInFromCenter 1s forwards;
+  }
+  
+  /* Animación de entrada desde el centro */
+  @keyframes fadeInFromCenter {
+    0% {
+      opacity: 0;
+      transform: translate(-50%, -50%) scale(0.5);
+    }
+    100% {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
+  }
+  

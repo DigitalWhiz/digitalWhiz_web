@@ -1,12 +1,12 @@
-"use client";
+'use client';
+
 import { FormEvent, useState } from "react";
 import axios, { AxiosError } from "axios";
-import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { AUTH_ROUTES } from "@/routes/routes";
 
 function Signup() {
-  const [error, setError] = useState();
+  const [error, setError] = useState<string | null>(null);
   const router = useRouter();
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
@@ -19,31 +19,26 @@ function Signup() {
         name: formData.get("name"),
       });
       console.log(signupResponse);
-      const res = await signIn("credentials", {
-        email: signupResponse.data.email,
-        password: formData.get("password"),
-        redirect: false,
-      });
-
-    // CUANDO EL INICIO SE SESIÓN ES OK, REDIRECCIONAR A LA PAGINA DE PERFIL DE USUARIO
-      if (res?.ok) return router.push(AUTH_ROUTES.PROFILE); 
+      
+      router.push(AUTH_ROUTES.LOGIN);
     } catch (error) {
       console.log(error);
       if (error instanceof AxiosError) {
         const errorMessage = error.response?.data.message;
         setError(errorMessage);
+      } else {
+        setError("Error de red");
       }
     }
   };
 
   return (
     <div className="justify-center h-[calc(100vh-4rem)] flex items-center">
-      <form onSubmit={handleSubmit} className="gradient-bg-form px-8 py-10 w-3/12 rounded-2xl">
-
-        {/* ACÁ DEBO MODIFICAR EL ERROR QUE ME APARECE EN EL NAVEGADOR, YA QUE ESTÁ CONFIGURADO MAS O MENOS, NO TIENE NADA EXTRABAGANTE */}
-        
+      <form onSubmit={handleSubmit} className="bg-secondary-800 px-8 py-10 w-3/12 rounded-2xl">
         {error && <div className="bg-red-500 text-white p-2 mb-2">{error}</div>}
-        <h1 className="text-4xl font-bold mb-7 text-white">Register</h1>
+        <h1 className="text-4xl font-bold mb-7">
+          <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#F64994] via-[#FC78F4] to-[#C327E9]">Registrarse</span>
+        </h1>
 
         <label className="text-slate-300">Name:</label>
         <input
@@ -70,7 +65,7 @@ function Signup() {
         />
 
         <button className="bg-blue-500 text-white px-4 py-2 block w-full mt-4 rounded">
-          Send
+          Enviar
         </button>
       </form>
     </div>
